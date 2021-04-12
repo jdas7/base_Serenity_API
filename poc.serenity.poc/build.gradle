@@ -1,0 +1,48 @@
+repositories {
+    mavenLocal()
+    jcenter()
+    mavenCentral()
+}
+
+ext{
+    serenity_version = "2.0.30"
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.30")
+    }
+}
+
+apply plugin: "java"
+apply plugin: "eclipse"
+apply plugin: "idea"
+apply plugin: "net.serenity-bdd.aggregator"
+apply plugin: 'maven'
+
+dependencies {
+    compile localGroovy()
+    compile 'com.googlecode.json-simple:json-simple:1.1.1'
+    compile "net.serenity-bdd:serenity-rest-assured:$serenity_version"
+    testCompile "net.serenity-bdd:serenity-junit:$serenity_version"
+    testCompile "net.serenity-bdd:serenity-core:$serenity_version"
+    compile "net.serenity-bdd:serenity-cucumber5:2.2.5"
+    compile 'io.rest-assured:json-schema-validator:3.0.3'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.9.0'
+    /* Lombok */
+    compileOnly 'org.projectlombok:lombok:1.18.8'
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+    compile group: 'org.aeonbits.owner', name: 'owner', version: '1.0.4'
+    compile group: 'commons-httpclient', name: 'commons-httpclient', version: '3.1'
+    testImplementation group: 'org.hamcrest', name: 'hamcrest-library', version: '2.1'
+
+
+    testCompile 'org.slf4j:slf4j-simple:1.7.7'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.assertj:assertj-core:1.7.0'
+}
